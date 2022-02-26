@@ -1,0 +1,44 @@
+{% extends parentLayout ?? '_layouts/cp' %}
+
+{% import "_includes/forms" as forms %}
+{% import 'extendify-for-craft-cms/_macros' as macros %}
+
+{% do view.registerAssetBundle("centrillion\\extendifyforcraftcms\\assets\\ExtendifyAsset") %}
+
+{% if title is not defined %}
+    {% set title = 'Extendify' %}
+{% endif %}
+
+{% set crumbs = [
+    { label: 'Extendify' | t('extendify-for-craft-cms'), url: url('extendify-for-craft-cms/settings') },
+    { label: 'Settings' | t('extendify-for-craft-cms'), url: url('extendify-for-craft-cms/settings') }
+] %}
+
+{% set tabs = {
+    "general": {label: "General"|t('extendify-for-craft-cms'), url: "#general"},
+    "product-feeds": {label: "Product Feeds"|t('extendify-for-craft-cms'), url: "#product-feeds"},
+} %}
+
+{% set selectedTab = 'general' %}
+{% set fullPageForm = true %}
+
+{% block content %}
+  <input type="hidden" name="action" value="extendify-for-craft-cms/settings/save-settings">
+  <input type="hidden" name="pluginHandle" value="extendify-for-craft-cms">
+
+  {% if message %}
+  <div id="message" style="padding:20px;background-color:#efefef;color:red;margin-bottom:15px;">
+    {{ message }}
+  </div>
+  {% endif %}  
+
+  {# -- General Tab -- #}
+  {% include "extendify-for-craft-cms/_tabs/general.twig" %}
+  {# -- ProductFeed Tab -- #}
+  {% include "extendify-for-craft-cms/_tabs/productFeed.twig" %}
+  
+  <hr>
+  <div id="plugin-footer">
+    <p> Crafted by Centrillion Technology</p>
+  </div>
+{% endblock %}

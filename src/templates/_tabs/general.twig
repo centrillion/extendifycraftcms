@@ -1,0 +1,118 @@
+{% import "_includes/forms" as forms %}
+{% import 'extendify-for-craft-cms/_macros' as macros %}
+
+<div id="general">
+	{% namespace "settings" %}
+	<h1>Form Settings</h1>
+	{{ forms.textField({
+			first:        true,
+			label:        "From Email"|t('extendify-for-craft-cms'),
+			required:     false,
+			id:           'fromEmail',
+			name:         'fromEmail',
+			instructions: "The email address(es) that a email will send from. Separate multiple email addresses with commas."|t('extendify-for-craft-cms'),
+			value:        settings.fromEmail,
+			disabled:     'fromEmail' in overrides,
+			warning:      'fromEmail' in overrides ? macros.configWarning('fromEmail'),
+			errors:       settings.getErrors('fromEmail')
+	}) }}
+
+	{{ forms.textField({
+			label:        "From Name"|t('extendify-for-craft-cms'),
+			id:           'fromName',
+			name:         'fromName',
+			instructions: "A name to inform the recipient(s) receiving the email who it was actually was sent by."|t('extendify-for-craft-cms'),
+			value:        (settings.fromName ? settings.fromName : ""),
+			disabled:     'fromName' in overrides,
+			warning:      'fromName' in overrides ? macros.configWarning('fromName'),
+			errors:       settings.getErrors('fromName')
+	}) }}
+
+	{{ forms.textField({
+			label:        "Reply To Email"|t('extendify-for-craft-cms'),
+			required:     false,
+			id:           'replyToEmail',
+			name:         'replyToEmail',
+			instructions: "The email address(es) that a recipient will reply back to. Separate multiple email addresses with commas."|t('extendify-for-craft-cms'),
+			value:        settings.replyToEmail,
+			disabled:     'replyToEmail' in overrides,
+			warning:      'replyToEmail' in overrides ? macros.configWarning('replyToEmail'),
+			errors:       settings.getErrors('replyToEmail')
+	}) }}
+
+	{{ forms.textField({
+			label:        "CC Email"|t('extendify-for-craft-cms'),
+			id:           'ccEmail',
+			name:         'ccEmail',
+			instructions: "The CC email address(es) that forms will send to. Separate multiple email addresses with commas."|t('extendify-for-craft-cms'),
+			value:        settings.ccEmail,
+			disabled:     'ccEmail' in overrides,
+			warning:      'ccEmail' in overrides ? macros.configWarning('ccEmail'),
+			errors:       settings.getErrors('ccEmail')
+	}) }}
+
+	{{ forms.textField({
+			label:        "BCC Email"|t('extendify-for-craft-cms'),
+			id:           'bccEmail',
+			name:         'bccEmail',
+			instructions: "The BCC email address(es) that forms will send to. Separate multiple email addresses with commas."|t('extendify-for-craft-cms'),
+			value:        settings.bccEmail,
+			disabled:     'bccEmail' in overrides,
+			warning:      'bccEmail' in overrides ? macros.configWarning('bccEmail'),
+			errors:       settings.getErrors('bccEmail')
+	}) }}
+
+	{{ forms.textField({
+			label:        "Subject Line"|t('extendify-for-craft-cms'),
+			id:           'subject',
+			name:         'subject',
+			instructions: "Text that will be the email’s Subject line to flag that it comes from a form."|t('extendify-for-craft-cms'),
+			value:        (settings.subject ? settings.subject : ""),
+			disabled:     'subject' in overrides,
+			warning:      'subject' in overrides ? macros.configWarning('subject'),
+			errors:       settings.getErrors('subject')
+	}) }}
+
+	{{ forms.lightswitchField({
+			label:        "Allow attachments?"|t('extendify-for-craft-cms'),
+			id:           'allowAttachments',
+			name:         'allowAttachments',
+			on:           settings.allowAttachments,
+			disabled:     'allowAttachments' in overrides,
+			warning:      'allowAttachments' in overrides ? macros.configWarning('allowAttachments'),
+			errors:       settings.getErrors('allowAttachments')
+	}) }}
+
+	{{ forms.lightswitchField({
+			label:        "Send Email to Recipient"|t('extendify-for-craft-cms'),
+			id:           'emailRecipient',
+			name:         'emailRecipient',
+			on:           settings.emailRecipient,
+			disabled:     'emailRecipient' in overrides,
+			warning:      'emailRecipient' in overrides ? macros.configWarning('emailRecipient'),
+			errors:       settings.getErrors('emailRecipient')
+	}) }}
+
+	{{ forms.textField({
+			label:        "Recipient Subject Line"|t('extendify-for-craft-cms'),
+			id:           'recipientSubject',
+			name:         'recipientSubject',
+			instructions: "Text that will be the recipient’s Subject line to flag that it comes from a form."|t('extendify-for-craft-cms'),
+			value:        (settings.recipientSubject ? settings.recipientSubject : ""),
+			disabled:     'recipientSubject' in overrides,
+			warning:      'recipientSubject' in overrides ? macros.configWarning('recipientSubject'),
+			errors:       settings.getErrors('recipientSubject')
+	}) }}
+
+	{{ forms.textField({
+			label:        "Success Flash Message"|t('extendify-for-craft-cms'),
+			id:           "successFlashMessage",
+			name:         "successFlashMessage",
+			instructions: "The flash message displayed after successfully sending a message."|t('extendify-for-craft-cms'),
+			value:        settings.successFlashMessage,
+			disabled:     'successFlashMessage' in overrides,
+			warning:      'successFlashMessage' in overrides ? macros.configWarning('successFlashMessage'),
+			errors:       settings.getErrors('successFlashMessage')
+	}) }}
+	{% endnamespace %}
+</div>

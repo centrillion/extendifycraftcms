@@ -1,0 +1,71 @@
+{% import "_includes/forms" as forms %}
+{% import 'extendify-for-craft-cms/_macros' as macros %}
+
+<div id="product-feeds" class="hidden">
+{% namespace "settings" %}
+	<h1>Product Feeds Settings</h1>
+
+    {{ forms.textField({
+			first:        true,
+			label:        "Secret Key"|t('extendify-for-craft-cms'),
+			required:     false,
+			id:           'secretKey',
+			name:         'secretKey',
+			instructions: "Secret Key for webhook"|t('extendify-for-craft-cms'),
+			value:        settings.secretKey,
+			disabled:     'secretKey' in overrides,
+			warning:      'secretKey' in overrides ? macros.configWarning('secretKey'),
+			errors:       settings.getErrors('secretKey')
+	}) }}
+
+	{{ forms.editableTableField({
+        label: 'Product Feeds'|t('extendify-for-craft-cms'),
+        name: 'productFeeds',
+        id: 'productFeeds',
+        warning: 'productFeeds' in overrides ? macros.configWarning('productFeeds'),
+        cols: [
+            {
+                type: 'singleline',
+                heading: 'Feed Name'|t('extendify-for-craft-cms'),
+                placeholder: 'Feed',
+                code: false,
+            },
+            {
+                type: 'singleline',
+                heading: 'Feed URL'|t('extendify-for-craft-cms'),
+                placeholder: 'https:\\site.com\feed.json',
+                code: false,
+            },
+            {
+                type: 'select',
+                heading: 'Feed Type'|t('extendify-for-craft-cms'),
+                options: {
+                    '.json': 'JSON',
+                    '.xml': 'XML',
+                    '.csv' : 'CSV',
+                    '.tsv' : 'TSV',
+                },
+                thin: true,
+            },
+            {
+                type: 'singleline',
+                heading: 'Feedme ID'|t('extendify-for-craft-cms'),
+                placeholder: '1',
+                thin: true,
+            },
+            {
+                type: 'singleline',
+                heading: 'Feedme PassKey'|t('extendify-for-craft-cms'),
+                placeholder: 'xxxx',
+                thin: true,
+            },
+        ],
+        rows: settings.productFeeds,
+        addRowLabel: 'Add a Product Feed'|t('extendify-for-craft-cms'),
+    }) }}
+
+    <a class="btn submit" href="{{ actionUrl('extendify-for-craft-cms/settings/download-feeds') }}">{{ 'Download Product Feeds' | t('extendify-for-craft-cms') }}</a>
+    <hr>
+    <a class="btn submit" href="{{ actionUrl('extendify-for-craft-cms/settings/delete-all-products') }}">{{ 'Delete All Products' | t('extendify-for-craft-cms') }}</a>
+    {% endnamespace %}
+</div>

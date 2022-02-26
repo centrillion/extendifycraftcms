@@ -1,0 +1,10 @@
+{% macro configWarning(setting) -%}
+    {{ 'This is being overridden by the `{setting}` config setting.'|t('extendify-for-craft-cms', {setting: setting })|markdown(inlineOnly=true) }}
+{%- endmacro %}
+
+
+{% macro info(text, params) -%}
+    <span class="info">
+        {{- text|t('extendify-for-craft-cms', params)|markdown(inlineOnly=true) -}}
+    </span>
+{%- endmacro %}

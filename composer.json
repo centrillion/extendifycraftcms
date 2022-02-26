@@ -1,0 +1,40 @@
+{
+    "name": "centrillion/extendify-for-craft-cms",
+    "description": "Extendify plugin used to extend Craft CMS Functionality",
+    "type": "craft-plugin",
+    "version": "1.1.2",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "extendify for craft cms"
+    ],
+    "support": {
+        "docs": "???",
+        "issues": "???"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Albert Nassif",
+            "homepage": "www.centrillion.com.au"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0-RC1"
+    },
+    "autoload": {
+        "psr-4": {
+          "centrillion\\extendifyforcraftcms\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Extendify for Craft CMS",
+        "handle": "extendify-for-craft-cms",
+        "hasCpSettings": true,
+        "hasCpSection": false,
+        "changelogUrl": "???",
+        "class": "centrillion\\extendifyforcraftcms\\ExtendifyForCraftCms"
+    }
+}
